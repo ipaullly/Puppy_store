@@ -1,0 +1,16 @@
+language: python
+python:
+  - '3.7'
+install:
+  - 'pip install pipenv'
+  - 'pip install coveralls'
+  - 'pipenv install'
+services:
+  - postgresql
+before_script:
+  - psql -c "CREATE DATABASE puppy_store_drf;" -U postgres
+script:
+  - 'coverage run --source="." manage.py test'
+  - 'coverage report'
+after_success:
+  - coveralls
