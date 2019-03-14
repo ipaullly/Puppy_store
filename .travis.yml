@@ -10,6 +10,7 @@ services:
 before_script:
   - psql -c "CREATE DATABASE puppy_store_drf;" -U postgres
   - psql -c "CREATE USER rufus WITH PASSWORD 'tykenyke';" -U postgres
+  - psql -c "ALTER USER rufus CREATEDB;" -U postgres
   - psql -c "GRANT ALL PRIVILEGES ON DATABASE puppy_store_drf TO rufus;" -U postgres
 script:
   - 'coverage run --source="." manage.py test'
