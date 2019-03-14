@@ -10,6 +10,7 @@ django = "*"
 djangorestframework = "*"
 psycopg2-binary = "*"
 coverage = "*"
+django-environ = "*"
 
 [requires]
 python_version = "3.7"

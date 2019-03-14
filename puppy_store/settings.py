@@ -9,9 +9,13 @@ https://docs.djangoproject.com/en/2.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
-
 import os
+import environ
 
+env = environ.Env(
+    DEBUG=(bool, False)
+)
+environ.Env.read_env()
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -23,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = ')m(mp8e5@d=ux_ood^ds(bifpepz$o+%f)r#vsls^66aktpgjx'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -81,14 +85,7 @@ WSGI_APPLICATION = 'puppy_store.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'puppy_store_drf',
-        'USER': 'ipaully',
-        'PASSWORD': 'polmog9439',
-        'HOST': '127.0.0.1',
-        'PORT': '5432'
-    }
+    'default': env.db(),
 }
 
 
